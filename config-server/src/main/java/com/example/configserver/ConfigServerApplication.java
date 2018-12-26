@@ -14,7 +14,7 @@ public class ConfigServerApplication {
 
 
     public void fun(){
-        System.out.println(5);
+        System.out.println(6);
     }
 }
 
