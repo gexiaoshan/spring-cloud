@@ -5,11 +5,11 @@ spring:
     config:
       server:
         git:
-          uri: http://192.168.40.60/root/hxjk-config.git
-          username: root
-          password: hxjk2018
+          uri: https://github.com/gexiaoshan518/spring-cloud.git
+          username:
+          password:
 #          default-label: ${spring.profiles.active}
-          search-paths: 'src/main/resources/{application}'
+          search-paths: 'config-server/src/main/resources/{application}'
           force-pull: true
 server:
   port: 1201
