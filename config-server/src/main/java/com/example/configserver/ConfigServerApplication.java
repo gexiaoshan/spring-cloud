@@ -12,9 +12,5 @@ public class ConfigServerApplication {
         SpringApplication.run(ConfigServerApplication.class, args);
     }
 
-
-    public void fun(){
-        System.out.println(10);
-    }
 }
 
