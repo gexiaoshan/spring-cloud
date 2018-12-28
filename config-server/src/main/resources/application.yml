@@ -1,3 +1,6 @@
+server:
+  port: 1201
+
 spring:
   application:
     name: config-server
@@ -5,11 +8,18 @@ spring:
     config:
       server:
         git:
+          # Git 仓库位置
           uri: https://github.com/gexiaoshan518/spring-cloud.git
+          # 访问 Git 仓库的用户名
           username:
+          # 访问 Git 仓库的密码
           password:
 #          default-label: ${spring.profiles.active}
+          # 仓库路径下相对搜索位置，可配置多个
           search-paths: 'config-server/src/main/resources/{application}'
-          force-pull: true
-server:
-  port: 1201
+          #force-pull: true
+  #加密，配置用户名密码
+  security:
+    user:
+      name: admin
+      password: 123456
