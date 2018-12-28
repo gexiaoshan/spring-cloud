@@ -1,2 +1,2 @@
 test:
-  test: master-test
+  test: client-master-test
