@@ -1,0 +1,15 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: config-client
+  profiles:
+    active: prod
+  cloud:
+    config:
+      profile: ${spring.profiles.active}
+      label: master
+      uri: http://localhost:1201
+      username: admin
+      password: 123456
