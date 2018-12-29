@@ -5,7 +5,7 @@ spring:
   application:
     name: config-client
   profiles:
-    active: prod
+    active: test
   cloud:
     config:
       profile: ${spring.profiles.active}
@@ -13,3 +13,9 @@ spring:
       uri: http://localhost:1201
       username: admin
       password: 123456
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh

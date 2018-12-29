@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: config-server
+#  profiles:
+#    active: native
   cloud:
     config:
       server:
@@ -14,10 +16,11 @@ spring:
           username:
           # 访问 Git 仓库的密码
           password:
-#          default-label: ${spring.profiles.active}
           # 仓库路径下相对搜索位置，可配置多个
           search-paths: 'config-server/src/main/resources/{application}'
           #force-pull: true
+#        native:
+#          searchLocations: E:/config
   #加密，配置用户名密码
   security:
     user:
