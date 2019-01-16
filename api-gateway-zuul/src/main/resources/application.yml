@@ -1,0 +1,38 @@
+#项目名
+spring:
+  application:
+    name: api-gateway-zuul
+#端口号
+server:
+  port: 7002
+
+zuul:
+  routes:
+    #请求重定向
+    hello:
+      path: /hello/*
+      url: http://www.ityouknow.com/
+    #默认情况下，Zuul会代理所有注册到Eureka Server的微服务，
+    #并且Zuul的路由规则如下：http://ZUUL_HOST:ZUUL_PORT/微服务在Eureka上的serviceId/**会被转发到serviceId对应的微服务
+    eureka-discovery: /discovery/*
+    discovery:
+      path: /discovery2/*
+      serviceId: eureka-discovery
+
+#eureka注册中心配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7000/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 2
+    #服务刷新时间配置，每隔这个时间会主动心跳一次
+    #默认30s
+    lease-renewal-interval-in-seconds: 1
+    #将ip注册到eureka server上而不是机器主机名
+    prefer-ip-address: true
+    #ip-address: 127.0.0.1
+    #InstanceId默认是${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}},
+    #也就是：主机名：应用名：应用端口
+    #通过instance-id 自定义ip+端口号
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
