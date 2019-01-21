@@ -7,6 +7,7 @@ server:
   port: 7002
 
 zuul:
+  retryable: true
   routes:
     #请求重定向
     hello:
@@ -18,6 +19,34 @@ zuul:
     discovery:
       path: /discovery2/*
       serviceId: eureka-discovery
+  host:
+    connect-timeout-millis: 5000
+    socket-timeout-millis: 10000
+#路由方式是serviceId的方式生效，超时时间，如果是url方式，上面zuul.host方式生效
+#全局服务的重试与超时配置,
+ribbon:
+  ReadTimeout: 2000 #请求处理的超时时间
+  ConnectTimeout: 1000 #请求连接的超时时间
+  MaxAutoRetries: 1 #对当前实例的重试次数
+  MaxAutoRetriesNextServer: 1 #切换实例的重试次数
+  #okToRetryOnAllOperations: false #对所有操作请求都进行重试
+
+#针对单个服务的重试与超时配置
+eureka-discovery1:
+  ribbon:
+    ReadTimeout: 2000 #请求处理的超时时间
+    ConnectTimeout: 1000 #请求连接的超时时间
+    MaxAutoRetries: 3 #对当前实例的重试次数
+    MaxAutoRetriesNextServer: 0  #切换实例的重试次数
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+
 
 #eureka注册中心配置
 eureka:
